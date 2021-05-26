@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   Avatar,
   Box,
@@ -12,9 +11,19 @@ import {
   TablePagination,
   TableRow,
   Typography,
+  makeStyles,
 } from "@material-ui/core";
+import getInitials from "../utils/getInitials";
+
+const useStyles = makeStyles((theme) => ({
+  root: {},
+  avatar: {
+    marginRight: theme.spacing(2),
+  },
+}));
 
 const UsersTable = ({ users, ...rest }) => {
+  const classes = useStyles();
   const [selectedUserIds, setSelectedUserIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
@@ -63,7 +72,7 @@ const UsersTable = ({ users, ...rest }) => {
 
   return (
     <Card {...rest}>
-      <Box>
+      <Box minWidth={1050}>
         <Table>
           <TableHead>
             <TableRow>
@@ -96,9 +105,9 @@ const UsersTable = ({ users, ...rest }) => {
                   />
                 </TableCell>
                 <TableCell>
-                  <Box>
-                    <Avatar src={user.avatarUrl}>
-                      {/* {getInitials(user.name)} */}
+                  <Box alignItems="center" display="flex">
+                    <Avatar className={classes.avatar} src={user.avatarUrl}>
+                      {getInitials(user.name)}
                     </Avatar>
                     <Typography color="textPrimary" variant="body1">
                       {user.name}
@@ -110,15 +119,15 @@ const UsersTable = ({ users, ...rest }) => {
           </TableBody>
         </Table>
       </Box>
-      {/* <TablePagination
+      <TablePagination
         component="div"
         count={users.length}
-        onPageChange={handlePageChange}
-        onRowsPerPageChange={handleLimitChange}
+        onChangePage={handlePageChange}
+        onChangeRowsPerPage={handleLimitChange}
         page={page}
         rowsPerPage={limit}
         rowsPerPageOptions={[5, 10, 25]}
-      /> */}
+      />
     </Card>
   );
 };
