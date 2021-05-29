@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/icons": "^4.11.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "lock": {
+    "@material-ui/core#^4.11.4": "@material-ui/core@v4.11.4-KuHXPdoVUkKardFiq8rd",
+    "@material-ui/icons#^4.11.2": "@material-ui/icons@v4.11.2-P3aGn52PFrJCAZySLcvo",
+    "react#^17.0.2": "react@v17.0.1-yH0aYV1FOvoIPeKBbHxg",
+    "react-dom#^17.0.2": "react-dom@v17.0.1-oZ1BXZ5opQ1DbTh7nu9r"
+  }
+}

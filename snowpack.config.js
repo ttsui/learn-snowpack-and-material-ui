@@ -3,7 +3,7 @@ module.exports = {
   mount: {
     /* ... */
   },
-  plugins: ['@snowpack/plugin-react-refresh'],
+  plugins: ["@snowpack/plugin-react-refresh"],
   routes: [
     /* Enable an SPA Fallback in development: */
     // {"match": "routes", "src": ".*", "dest": "/index.html"},
@@ -13,7 +13,8 @@ module.exports = {
     // "bundle": true,
   },
   packageOptions: {
-    /* ... */
+    source: "remote",
+    types: true,
   },
   devOptions: {
     /* ... */
@@ -21,4 +22,5 @@ module.exports = {
   buildOptions: {
     /* ... */
   },
+  exclude: ["**/node_modules/**/*", "**/.git/**/*"],
 };

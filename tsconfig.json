@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "baseUrl": "./",
+    "paths": { "*": [".snowpack/types/*"] },
+    "allowSyntheticDefaultImports": true
+  }
+}
