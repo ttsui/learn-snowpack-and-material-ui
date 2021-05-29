@@ -14,6 +14,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import getInitials from "../utils/getInitials";
+import dayjs from "dayjs";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -88,6 +89,7 @@ const UsersTable = ({ users, ...rest }) => {
                 />
               </TableCell>
               <TableCell>Name</TableCell>
+              <TableCell>Created At</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -113,6 +115,9 @@ const UsersTable = ({ users, ...rest }) => {
                       {user.name}
                     </Typography>
                   </Box>
+                </TableCell>
+                <TableCell>
+                  {dayjs(user.createdAt).format("DD MMM YYYY")}
                 </TableCell>
               </TableRow>
             ))}
