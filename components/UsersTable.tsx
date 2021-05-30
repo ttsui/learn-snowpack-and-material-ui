@@ -15,6 +15,7 @@ import {
 } from "@material-ui/core";
 import getInitials from "../utils/getInitials";
 import dayjs from "dayjs";
+import { UserDrawer } from "./UserDrawer";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -28,6 +29,8 @@ const UsersTable = ({ users, ...rest }) => {
   const [selectedUserIds, setSelectedUserIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
+  const [drawerUser, setDrawerUser] = useState(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleSelectAll = (event) => {
     let newSelectedUserIds;
@@ -71,6 +74,11 @@ const UsersTable = ({ users, ...rest }) => {
     setPage(newPage);
   };
 
+  const handleRowClicked = (event, user) => {
+    setIsDrawerOpen(!isDrawerOpen);
+    setDrawerUser(user);
+  };
+
   return (
     <Card {...rest}>
       <Box minWidth={1050}>
@@ -97,6 +105,7 @@ const UsersTable = ({ users, ...rest }) => {
               <TableRow
                 hover
                 key={user.id}
+                onClick={(event) => handleRowClicked(event, user)}
                 selected={selectedUserIds.indexOf(user.id) !== -1}
               >
                 <TableCell padding="checkbox">
@@ -133,6 +142,7 @@ const UsersTable = ({ users, ...rest }) => {
         rowsPerPage={limit}
         rowsPerPageOptions={[5, 10, 25]}
       />
+      <UserDrawer user={drawerUser} isDrawerOpen={isDrawerOpen}></UserDrawer>
     </Card>
   );
 };
