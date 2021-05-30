@@ -13,8 +13,7 @@ module.exports = {
     // "bundle": true,
   },
   packageOptions: {
-    source: "remote",
-    types: true,
+    /* ... */
   },
   devOptions: {
     /* ... */
