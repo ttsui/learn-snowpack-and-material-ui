@@ -30,7 +30,7 @@ const UsersTable = ({ users, ...rest }) => {
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
   const [drawerUser, setDrawerUser] = useState(null);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const handleSelectAll = (event) => {
     let newSelectedUserIds;
@@ -75,8 +75,12 @@ const UsersTable = ({ users, ...rest }) => {
   };
 
   const handleRowClicked = (event, user) => {
-    setIsDrawerOpen(!isDrawerOpen);
+    setDrawerOpen(!drawerOpen);
     setDrawerUser(user);
+  };
+
+  const handleDrawerClose = () => {
+    setDrawerOpen(false);
   };
 
   return (
@@ -142,7 +146,11 @@ const UsersTable = ({ users, ...rest }) => {
         rowsPerPage={limit}
         rowsPerPageOptions={[5, 10, 25]}
       />
-      <UserDrawer user={drawerUser} isDrawerOpen={isDrawerOpen}></UserDrawer>
+      <UserDrawer
+        user={drawerUser}
+        open={drawerOpen}
+        onClose={handleDrawerClose}
+      ></UserDrawer>
     </Card>
   );
 };

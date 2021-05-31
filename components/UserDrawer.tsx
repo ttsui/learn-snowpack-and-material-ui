@@ -4,7 +4,8 @@ import { User } from "../models/User";
 
 interface UserDrawerProp {
   user: User | null;
-  isDrawerOpen: boolean;
+  open: boolean;
+  onClose: () => void;
 }
 
 const useStyles = makeStyles(() => ({
@@ -21,26 +22,19 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export const UserDrawer = ({ user }: UserDrawerProp) => {
+export const UserDrawer = ({ user, open, onClose }: UserDrawerProp) => {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-  const [prevUser, setPrevUser] = useState(null);
-
-  if (user?.id !== prevUser?.id) {
-    setOpen(true);
-    setPrevUser(user);
-  }
 
   return user != null ? (
     <Drawer
       anchor="right"
       open={open}
-      onClose={() => setOpen(false)}
+      onClose={onClose}
       classes={{ paper: classes.desktopDrawer }}
     >
       <Box alignItems="center" display="flex" flexDirection="column" p={2}>
         <Avatar className={classes.avatar} src={user.avatarUrl} />
-        <Typography className={classes.name} color="textPrimary" variant="h5">
+        <Typography color="textPrimary" variant="h5">
           {user.name}
         </Typography>
         <Typography color="textSecondary" variant="body2">
